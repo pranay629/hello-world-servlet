@@ -59,19 +59,20 @@ stages {
      nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
       }
  }
-}
-    stage('Deploy war'){
-        steps{
+
+     stage('Deploy war'){
+      steps{
             sh label: '', script:'ansible-playbook deployed.yml'
             deploy adapters: [tomcat8(credentialsId: 'e9a4dc48-ecd1-4983-bc32-c04de10f4153', path: '', url: 'http://13.126.36.199:8080/manager/html')], contextPath: '/var/lib/jenkins/workspace/pipilene-script/target/*.war', war: 'war'
         }
     }
+}
 post {
         success {
-            mail to:"raknas000@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
+            mail to:"bellamkonda11321@com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
         }
         failure {
-            mail to:"raknas000@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
+            mail to:"bellamklonda11321@.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
         }
     }       
 }
