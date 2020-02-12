@@ -63,8 +63,9 @@ stages {
      stage('Deploy war'){
       steps{
      //       sh label: '', script:'ansible-playbook deployed.yml'
-            deploy adapters: [tomcat8(credentialsId: 'e9a4dc48-ecd1-4983-bc32-c04de10f4153', path: '', url: 'http://13.126.36.199:8080')], contextPath: 'hello-world-servlet/target/*.war', war: 'war'
-        }
+
+      deploy adapters: [tomcat8(credentialsId: 'e9a4dc48-ecd1-4983-bc32-c04de10f4153', path: '', url: 'http://13.126.36.199:8080')], contextPath: 'helloworld', war: '**/*.war'
+      }
     }
 }
 post {
